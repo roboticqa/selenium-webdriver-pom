@@ -54,7 +54,7 @@ The project uses the following main dependencies (managed through Maven):
 ```
 
 # Add surefile plugin in pom.xml
-
+```xml
   <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -67,6 +67,8 @@ The project uses the following main dependencies (managed through Maven):
                 </configuration>
             </plugin>
         </plugins>
+
+```
 
 ```xml
 src/
