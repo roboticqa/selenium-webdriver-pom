@@ -3,7 +3,7 @@
 <suite name="All Test Suite">
    <test name="Login">
        <classes>
-           <class name="com.roboticqa.LoginTests"></class>
+           <class name="com.roboticqa.tests.LoginTests"></class>
        </classes>
    </test>
 </suite>

@@ -1,5 +1,8 @@
-package com.roboticqa;
+package com.roboticqa.tests;
 
+import com.roboticqa.factory.PageFactory;
+import com.roboticqa.pages.HomePage;
+import com.roboticqa.pages.LoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,21 +20,19 @@ public class LoginTests {
     public void successfullyLogin(){
 
         WebDriver driver=new ChromeDriver();
+        PageFactory pageFactory=new PageFactory(driver);
 
         driver.get("https://roboticqa.com/");
-
         driver.manage().window().maximize();
 
-        driver.findElement(By.id("identifier")).sendKeys("standard_user");
+        // Use the factory to het page object
+        LoginPage loginPage=pageFactory.getLoginPage();
+        loginPage.login("standard_user","password123");
 
-        driver.findElement(By.id("password")).sendKeys("password123");
-
-        driver.findElement(By.xpath("//button[@type='submit']")).click();
-
-        WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@aria-label,'Notifications')]//li")));
-        WebElement msg=driver.findElement(By.xpath("//div[text()='Welcome back!']"));
-        Assert.assertEquals(msg.getText(),"Welcome back!");
+        //get meesage and assert in test loaded
+        HomePage homePage=pageFactory.getHomePage();
+        String actualMessage=homePage.getBoxText();
+        Assert.assertEquals(actualMessage,"Welcome back!");
 
         driver.close();
 
