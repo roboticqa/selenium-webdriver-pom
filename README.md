@@ -50,8 +50,25 @@ The project uses the following main dependencies (managed through Maven):
         <scope>test</scope>
     </dependency>
 
-</dependencies>```
+</dependencies>
+```
 
+# Add surefile plugin in pom.xml
+
+  <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.5.3</version>
+                <configuration>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>testng.xml</suiteXmlFile>
+                    </suiteXmlFiles>
+                </configuration>
+            </plugin>
+        </plugins>
+
+```xml
 src/
 ├── main/
 │   ├── java/
@@ -63,6 +80,7 @@ src/
 │   └── resources/
 │       ├── testng.xml      # TestNG configuration
 │       └── config.properties # Configuration properties
+```
 
 # Setup Instructions
 Clone the Repository
